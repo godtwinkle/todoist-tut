@@ -55,9 +55,9 @@ export const EditTask = ({ showEditTask, taskPram }) => {
         .then(() => {
           setTask(task);
           setProject("");
-          setShowProjectOverlay(false);
           setShowMain(false);
           setShowTaskDate(false);
+          setShowProjectOverlay(false);
         })
     );
   };

@@ -12,7 +12,7 @@ jest.mock("../context", () => ({
     projects: [],
   })),
 }));
-
+ 
 describe("<ProjectOverlay", () => {
   afterEach(() => {
     jest.clearAllMocks();

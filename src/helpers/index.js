@@ -8,7 +8,7 @@ export const getTitle = (projects, projectId) =>
 export const getCollatedTitle = (projects, key) =>
   projects.find((project) => project.key === key);
 
-//tim kiem xem co phai la 1 trong cac task co san hay khong
+//tim kiem xem co phai la 1 trong cac project co san hay khong
 export const collatedTasksExist = (selectedProject) =>
   collatedTasks.find((task) => task.key === selectedProject);
 

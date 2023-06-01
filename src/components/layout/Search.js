@@ -69,7 +69,7 @@ export const Search = () => {
           className="close_icon"
           aria-label="Close Search"
         >
-          <FaRegTimesCircle />
+          {search !== "" && showResults && <FaRegTimesCircle />}
         </button>
       </div>
       {search !== "" && showResults && (

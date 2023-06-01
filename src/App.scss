@@ -196,7 +196,7 @@ $generic-bg: #db4c3f;
       &.active,
       &:hover {
         font-weight: bold;
-        background-color: #282828;
+        background-color: #383838;
       }
     }
 
@@ -217,7 +217,7 @@ $generic-bg: #db4c3f;
   .add-task {
     &__overlay {
       .add-task__main {
-        background-color: #444545;
+        background-color: #383838;
       }
 
       .add-task__cancel-x {
@@ -245,9 +245,25 @@ $generic-bg: #db4c3f;
     &__list li {
       border-bottom: 1px solid #444500;
 
-      .add-task{
+      .add-task {
         background-color: #454444;
+      }
+    }
+  }
 
+
+  .tasks__display {
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+    background-color: #444545;
+    border-color: transparent;
+    color: white;
+
+    &__list li {
+      border-bottom: 1px solid #444500;
+
+      .add-task {
+        background-color: #454444;
       }
     }
   }
@@ -369,9 +385,19 @@ header {
 
     div {
       margin-left: 100px;
-      &.logo {
-        padding-left: 8px;
+      &.bars {
         grid-area: 1 / 1;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+      }
+
+      &.logo {
+        margin: 0;
+        padding: 0;
+        grid-area: 1 / 2;
 
         img {
           width: 24px;
@@ -381,7 +407,7 @@ header {
       /* Search
       ============================================ */
       &.search {
-        grid-area: 1/2;
+        grid-area: 1/3;
         &-bar {
           padding-left: 8px;
           width: 100%;
@@ -420,6 +446,7 @@ header {
             border: none;
             padding: 0;
             margin-right: 5px;
+            color: #a20d00;
           }
         }
 
@@ -441,9 +468,10 @@ header {
             height: 50px;
             display: flex;
             align-items: center;
-            color: black;
+            color: #db4c3f;
             cursor: pointer;
             border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
           }
 
           .data-item:hover {
@@ -453,6 +481,7 @@ header {
           .data-item p {
             color: black;
             margin-left: 10px;
+            font-size: 13px;
           }
         }
 
@@ -462,8 +491,7 @@ header {
       }
 
       &.settings {
-        grid-area: 1/3;
-        text-align: right;
+        grid-area: 1/4;
 
         ul {
           float: right;
@@ -566,6 +594,10 @@ header {
   // @include mq("900px") {
   //   display: none;
   // }
+
+  &__display{
+    display: none;
+  }
 
   li {
     &:hover .sidebar__project-delete {
@@ -798,6 +830,8 @@ header {
   //   width: auto;
   // }
 
+  
+
   h2 {
     font-size: 20px;
     font-weight: normal;
@@ -849,11 +883,88 @@ header {
       margin-left: auto;
       cursor: pointer;
     }
-    .add-task{
-      display: flex;      
-      position: absolute;      
+    .add-task {
+      display: flex;
+      position: absolute;
       background-color: #fafafa;
+    }
+  }
+}
 
+.tasks__display {
+  width: 100%;
+  background-color: white;
+  margin-left: 0;
+  border-right: $generic-border;
+  min-height: calc(100vh);
+  vertical-align: top;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 80px;
+  padding-bottom: 84px;
+
+  // @include mq("900px") {
+  //   margin-left: 0;
+  //   width: auto;
+  // }
+
+  
+
+  h2 {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0 30px 20px 0;
+  }
+
+  .add-task {
+    margin-top: 20px;
+  }
+
+  &__list li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    line-height: 18px;
+    color: #333;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    list-style-type: none;
+    border-bottom: 1px solid #f0f0f0;
+
+    .checkbox-holder {
+      margin-right: 20px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      line-height: 16px;
+
+      .checkbox {
+        cursor: pointer;
+        border-color: gray;
+        color: #343434;
+        height: 16px;
+        width: 16px;
+        display: block;
+        border: 1px solid gray;
+        border-radius: 16px;
+      }
+    }
+
+    .edit-task__shallow {
+      margin-left: auto;
+      cursor: pointer;
+    }
+    .add-task {
+      display: flex;
+      position: absolute;
+      background-color: #fafafa;
     }
   }
 }
@@ -1162,8 +1273,8 @@ header {
         .tab-not-archive-button[aria-selected="true"],
         .tab-archive-button[aria-selected="true"],
         .tab-archived-button[aria-selected="true"] {
-          background-color: #fff;
-          color: #202020;
+          background-color: #db4c3f;
+          color: #fff;
         }
         .tab-not-archive-button:focus,
         .tab-archive-button:focus,

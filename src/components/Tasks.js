@@ -5,11 +5,11 @@ import { useTasks } from "../hooks";
 import { collatedTasks } from "../constants";
 import { getTitle, getCollatedTitle, collatedTasksExist } from "../helpers";
 import { useSelectedProjectValue, useProjectsValue } from "../context";
-import { FaPen  } from "react-icons/fa";
+import { FaPen } from "react-icons/fa";
 
 import { EditTask } from "./EditTask";
 
-export const Tasks = () => {
+export const Tasks = ({showSidebar, setShowSidebar}) => {
   //lua chon project hien tai voi gia tri la (inbox,today,next_7)
   const { selectedProject } = useSelectedProjectValue();
 
@@ -24,12 +24,12 @@ export const Tasks = () => {
   const [showEditTask, setShowEditTask] = useState(false);
   const [editTaskId, setEditTaskId] = useState(null);
 
-  //neu co project duoc chon va khong nam trong cac muc (inbox,today,next 7) thi gan tieu de cua project
+  //neu co project duoc chon  nam trong cac muc (inbox,today,next 7) thi gan tieu de cua project
   if (collatedTasksExist(selectedProject) && selectedProject) {
     projectName = getCollatedTitle(collatedTasks, selectedProject).name;
   }
 
-  //neu nam trong cac muc mac dinh (inbox,today,next 7) duoc chon thi gan ten cua project
+  //neu khong nam trong cac muc mac dinh (inbox,today,next 7) duoc chon thi gan ten cua project
   if (
     projects &&
     projects.length > 0 &&
@@ -44,7 +44,7 @@ export const Tasks = () => {
   });
 
   return (
-    <div className="tasks" data-testid="tasks">
+    <div className={showSidebar?"tasks":"tasks__display"} data-testid="tasks">
       <h2 data-testid="project-name">{projectName}</h2>
 
       <ul className="tasks__list">

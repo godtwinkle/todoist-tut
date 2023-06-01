@@ -47,7 +47,7 @@ export const useTasks = (selectedProject) => {
       setTasks(
         //neu chon project trong 7 ngay toi
         selectedProject === "NEXT_7"
-          ? //se loc ra nhung tasks
+          ?
             newTasks.filter(
               //loc  task tao  trong vong 7 ngay ma chua hoan thanh
               (task) =>
@@ -71,12 +71,11 @@ export const useProjects = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    //truy van du lieu voi id cua user va sap xep theo projectId
     firebase
       .firestore()
       .collection("projects")
       .where("userId", "==", "EQDzlniTwHc9sEzeWbaN")
-      .orderBy("projectId")
+      .orderBy("name")
       .get()
       .then((snapshot) => {
         //lay tat ca project trong db
@@ -84,7 +83,7 @@ export const useProjects = () => {
           ...project.data(),
           docId: project.id,
         }));
-        //neu khong co project nao trung thi se tao project mac dinh
+        // chua full fill du lieu
         if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
           setProjects(allProjects);
         }
