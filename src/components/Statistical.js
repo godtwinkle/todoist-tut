@@ -6,6 +6,7 @@ const taskRef = firebase
   .firestore()
   .collection("tasks")
   .where("userId", "==", "EQDzlniTwHc9sEzeWbaN")
+  .where("date","!=","")
   .orderBy("date", "desc")
 
 export const Statistical = ({ showStatistical, setShowStatistical }) => {
