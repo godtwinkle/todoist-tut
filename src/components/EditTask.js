@@ -7,7 +7,7 @@ import { useSelectedProjectValue } from "../context";
 import { ProjectOverlay } from "./ProjectOverlay";
 import { TaskDate } from "./TaskDate";
 
-export const EditTask = ({ showEditTask, taskPram }) => {
+export const EditTask = ({ showEditTask,setShowEditTask, taskPram }) => {
   //xu ly ten task
   const [task, setTask] = useState(taskPram.task);
   // xu ly ngay tao task
@@ -27,7 +27,6 @@ export const EditTask = ({ showEditTask, taskPram }) => {
   //lua chon project hien tai voi gia tri la (inbox,today,next_7)
   const { selectedProject } = useSelectedProjectValue();
 
-  const [showMain, setShowMain] = useState(showEditTask);
 
   const editTask = () => {
     //lay project id cua project hien tai
@@ -54,17 +53,20 @@ export const EditTask = ({ showEditTask, taskPram }) => {
         })
         .then(() => {
           setTask(task);
-          setProject("");
-          setShowMain(false);
+          setProject(project);
+          setTaskDate(taskDate);
+          setShowEditTask(false);
           setShowTaskDate(false);
           setShowProjectOverlay(false);
         })
     );
   };
 
+
+
   return (
     <div className="add-task" data-testid="add-task-comp">
-      {showMain && (
+      {showEditTask && (
 
         <div className="add-task__main" data-testid="add-task-main">
           <ProjectOverlay
@@ -98,13 +100,13 @@ export const EditTask = ({ showEditTask, taskPram }) => {
             className="add-task__cancel"
             data-testid="add-task-main-cancel"
             onClick={() => {
-              setShowMain(false);
+              setShowEditTask(false);
               setShowTaskDate(false);
               setShowProjectOverlay(false);
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                setShowMain(false);
+                setShowEditTask(false);
                 setShowTaskDate(false);
                 setShowProjectOverlay(false);
               }

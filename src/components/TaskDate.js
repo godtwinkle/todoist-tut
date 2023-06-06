@@ -1,22 +1,46 @@
-import React from 'react';
-import moment from 'moment';
-import { FaSun, FaRegPaperPlane, FaRocket, FaPlane } from 'react-icons/fa';
-import PropTypes from 'prop-types';
+import React from "react";
+import moment from "moment";
+import { FaSun, FaRegPaperPlane, FaRocket, FaPlane } from "react-icons/fa";
+import PropTypes from "prop-types";
 
 export const TaskDate = ({ setTaskDate, showTaskDate, setShowTaskDate }) =>
   showTaskDate && (
     <div className="task-date" data-testid="task-date-overlay">
       <ul className="task-date__list">
+        <li>
+          <div
+            onClick={() => {
+              setShowTaskDate(false);
+              setTaskDate("");
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                setShowTaskDate(false);
+                setTaskDate("");
+              }
+            }}
+            data-testid="task-no-date"
+            //giup trinh doc co the doc cho nguoi mu
+            aria-label="Select no date as the task date"
+            tabIndex={0}
+            role="button"
+          >
+            <span>
+              <FaPlane />
+            </span>
+            <span>Không thời hạn</span>
+          </div>
+        </li>
         <li data-testid="task-date-today">
           <div
             onClick={() => {
               setShowTaskDate(false);
-              setTaskDate(moment().format('DD/MM/YYYY'));
+              setTaskDate(moment().format("DD/MM/YYYY"));
             }}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
+              if (e.key === "Enter") {
                 setShowTaskDate(false);
-                setTaskDate(moment().format('DD/MM/YYYY'));
+                setTaskDate(moment().format("DD/MM/YYYY"));
               }
             }}
             data-testid="task-date-today"
@@ -35,12 +59,12 @@ export const TaskDate = ({ setTaskDate, showTaskDate, setShowTaskDate }) =>
           <div
             onClick={() => {
               setShowTaskDate(false);
-              setTaskDate(moment().add(1, 'day').format('DD/MM/YYYY'));
+              setTaskDate(moment().add(1, "day").format("DD/MM/YYYY"));
             }}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
+              if (e.key === "Enter") {
                 setShowTaskDate(false);
-                setTaskDate(moment().add(1, 'day').format('DD/MM/YYYY'));
+                setTaskDate(moment().add(1, "day").format("DD/MM/YYYY"));
               }
             }}
             data-testid="task-date-tomorrow"
@@ -59,12 +83,12 @@ export const TaskDate = ({ setTaskDate, showTaskDate, setShowTaskDate }) =>
           <div
             onClick={() => {
               setShowTaskDate(false);
-              setTaskDate(moment().add(7, 'days').format('DD/MM/YYYY'));
+              setTaskDate(moment().add(7, "days").format("DD/MM/YYYY"));
             }}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
+              if (e.key === "Enter") {
                 setShowTaskDate(false);
-                setTaskDate(moment().add(7, 'days').format('DD/MM/YYYY'));
+                setTaskDate(moment().add(7, "days").format("DD/MM/YYYY"));
               }
             }}
             data-testid="task-date-next-week"
@@ -77,32 +101,6 @@ export const TaskDate = ({ setTaskDate, showTaskDate, setShowTaskDate }) =>
               <FaRegPaperPlane />
             </span>
             <span>Tuần tới</span>
-          </div>
-        </li>
-
-
-        <li>
-          <div
-            onClick={() => {
-              setShowTaskDate(false);
-              setTaskDate('');
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                setShowTaskDate(false);
-                setTaskDate('');
-              }
-            }}
-            data-testid="task-no-date"
-            //giup trinh doc co the doc cho nguoi mu
-            aria-label="Select no date as the task date"
-            tabIndex={0}
-            role="button"
-          >
-            <span>
-              <FaPlane />
-            </span>
-            <span>Không thời hạn</span>
           </div>
         </li>
       </ul>

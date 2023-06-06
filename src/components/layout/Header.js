@@ -23,7 +23,7 @@ export const Header = ({ darkMode, setDarkMode, showSidebar, setShowSidebar}) =>
           <img src="/images/logo.png" alt="Todoist" />
         </div>
 
-        <Search />
+      {showSidebar &&  <Search />}
 
         <div className="settings">
           <ul>
@@ -76,7 +76,6 @@ export const Header = ({ darkMode, setDarkMode, showSidebar, setShowSidebar}) =>
 
       <Statistical
         showStatistical={showStatistical}
-        setShowStatistical={setShowStatistical}
       />
     </header>
   );

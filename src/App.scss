@@ -127,10 +127,7 @@ $generic-bg: #db4c3f;
 
 @mixin mq($from) {
   @media (max-width: $from) {
-    @content;
-    .search {
-      display: none;
-    }
+    @content;    
   }
 }
 
@@ -407,6 +404,8 @@ header {
       /* Search
       ============================================ */
       &.search {
+
+        
         grid-area: 1/3;
         &-bar {
           padding-left: 8px;
@@ -591,9 +590,9 @@ header {
   border-right: $generic-border;
   background-color: #fafafa;
 
-  // @include mq("900px") {
-  //   display: none;
-  // }
+  @include mq("400px") {
+   width: 100%;
+  }
 
   &__display{
     display: none;
@@ -825,10 +824,9 @@ header {
   padding-top: 80px;
   padding-bottom: 84px;
 
-  // @include mq("900px") {
-  //   margin-left: 0;
-  //   width: auto;
-  // }
+  @include mq("400px") {
+    width: 100%;
+   }
 
   
 
@@ -1385,7 +1383,7 @@ header {
           display: list-item;
           text-align: -webkit-match-parent;
 
-          .short_date {
+          .task_index {
             display: inline-block;
             margin-right: 0.5em;
             color: grey;
@@ -1395,6 +1393,12 @@ header {
           strong {
             font-weight: 700;
             padding: 20px;
+          }
+          .short_date {
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            text-transform: capitalize;
           }
         }
       }

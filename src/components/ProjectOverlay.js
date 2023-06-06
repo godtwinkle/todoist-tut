@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useProjectsValue } from '../context';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { useProjectsValue } from "../context";
 
 export const ProjectOverlay = ({
   setProject,
@@ -16,8 +16,33 @@ export const ProjectOverlay = ({
     showProjectOverlay && (
       <div className="project-overlay" data-testid="project-overlay">
         <ul className="project-overlay__list">
+          <li key="INBOX" className={active === "INBOX" ? "active" : undefined}>
+            <div
+              data-testid="project-overlay-action"
+              onClick={() => {
+                setActive("INBOX");
+                setProject("INBOX");
+                setShowProjectOverlay(false);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setActive("INBOX");
+                  setProject("INBOX");
+                  setShowProjectOverlay(false);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label="Select the task project"
+            >
+              <div className="project-overlay__name">Hộp nhiệm vụ</div>
+            </div>
+          </li>
+
           {projects.map((project) => (
-            <li key={project.projectId} className={active === project.projectId ? 'active' : undefined}
+            <li
+              key={project.projectId}
+              className={active === project.projectId ? "active" : undefined}
             >
               <div
                 data-testid="project-overlay-action"
@@ -27,7 +52,7 @@ export const ProjectOverlay = ({
                   setShowProjectOverlay(false);
                 }}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
+                  if (e.key === "Enter") {
                     setActive(project.projectId);
                     setProject(project.projectId);
                     setShowProjectOverlay(false);

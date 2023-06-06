@@ -33,7 +33,7 @@ export const useTasks = (selectedProject) => {
         : //neu khong chon project thi se tu dong chon inbox
         selectedProject === "INBOX" || selectedProject === 0
         ? //voi ngay tao la rong
-          (unsubscribe = unsubscribe.where("date", "==", ""))
+        unsubscribe.where("projectId", "==", "INBOX")
         : //neu khong thi khong co gi thay doi
           unsubscribe;
 
@@ -47,12 +47,21 @@ export const useTasks = (selectedProject) => {
       setTasks(
         //neu chon project trong 7 ngay toi
         selectedProject === "NEXT_7"
-          ?
-            newTasks.filter(
+          ? newTasks.filter(
               //loc  task tao  trong vong 7 ngay ma chua hoan thanh
-              (task) =>
-                moment(task.date, "DD-MM-YYYY").diff(moment(), "days") <= 7 &&
-                task.archived !== true
+              (task) => {
+                const tomorrow = moment();
+                const sevenDaysAhead = moment().add(7, "days");
+
+                const isWithin7Days =
+                  moment(task.date, "DD-MM-YYYY").isSameOrAfter(tomorrow) &&
+                  moment(task.date, "DD-MM-YYYY").isSameOrBefore(
+                    sevenDaysAhead
+                  );
+
+                // Lọc task còn lại chưa được hoàn thành và nằm trong khoảng 7 ngày tới
+                return !task.archived && isWithin7Days;
+              }
             )
           : //loc task chua hoan thanh
             newTasks.filter((task) => task.archived !== true)

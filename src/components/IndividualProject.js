@@ -3,6 +3,7 @@ import { FaPen, FaTrashAlt } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { useProjectsValue, useSelectedProjectValue } from "../context";
 import { firebase } from "../firebase";
+import { useTasks } from "../hooks";
 
 export const IndividualProject = ({ project }) => {
   //xem co show phan xac nhan delete hay khong
@@ -13,13 +14,27 @@ export const IndividualProject = ({ project }) => {
 
   //lay du lieu cua 1 project
   const { setSelectedProject } = useSelectedProjectValue();
+  
+  const { tasks } = useTasks(project.projectId);
 
+  const deleteProject = (deleteProject) => {
+    tasks.forEach((task) => {
+      if (task.projectId === deleteProject.projectId) {
+        firebase
+          .firestore()
+          .collection("tasks")
+          .doc(task.id)
+          .update({          
+            projectId: "INBOX",
+          });
+      }
+      console.log(task.projectId);
+    });
 
-  const deleteProject = (docId) => {
     firebase
       .firestore()
       .collection("projects")
-      .doc(docId)
+      .doc(deleteProject.docId)
       .delete()
       .then(() => {
         setProjects([...projects]);
@@ -64,10 +79,13 @@ export const IndividualProject = ({ project }) => {
               <p>Bạn có muốn xoá dự án này không?</p>
               <button
                 type="button"
-                onClick={() => deleteProject(project.docId)}
+                onClick={() => deleteProject(project)}
               >
+          
                 Xoá
+                
               </button>
+
               <span
                 onClick={() => setShowConfirm(!showConfirm)}
                 onKeyDown={(e) => {
@@ -87,16 +105,15 @@ export const IndividualProject = ({ project }) => {
 
       <span
         className="sidebar__project-edit"
-        data-testid="edit-project"       
+        data-testid="edit-project"
         tabIndex={1}
         role="button"
         //giup trinh doc co the doc cho nguoi mu
         aria-label="Edit of project"
       >
         <FaPen />
-
+     
         <div className="add-project__input" data-testid="add-project-inner">
-          
           <input
             value={projectName}
             onChange={(e) => setProjectName(e.target.value)}
@@ -111,9 +128,9 @@ export const IndividualProject = ({ project }) => {
             onClick={() => editProject()}
             data-testid="add-project-submit"
           >
+            
             Sửa dự án
           </button>
-          
         </div>
       </span>
     </>

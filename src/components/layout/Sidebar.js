@@ -9,7 +9,7 @@ import { Projects } from "../Projects";
 import { useSelectedProjectValue } from "../../context";
 import { AddProject } from "../AddProject";
 
-export const Sidebar = ({showSidebar, setShowSidebar}) => {
+export const Sidebar = ({showSidebar}) => {
   //lua chon project hien tai voi gia tri la (inbox,today,next_7)
   const { setSelectedProject } = useSelectedProjectValue();
   //khi nhan vao project nao thi se active project do

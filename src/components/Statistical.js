@@ -6,10 +6,9 @@ const taskRef = firebase
   .firestore()
   .collection("tasks")
   .where("userId", "==", "EQDzlniTwHc9sEzeWbaN")
-  .where("date","!=","")
-  .orderBy("date", "desc")
+  .orderBy("date", "desc");
 
-export const Statistical = ({ showStatistical, setShowStatistical }) => {
+export const Statistical = ({ showStatistical }) => {
   const [activeTab, setActiveTab] = useState("not-archive");
   const [tasks, setTasks] = useState([]);
   const [notArchiveTasks, setNotArchiveTasks] = useState([]);
@@ -24,16 +23,22 @@ export const Statistical = ({ showStatistical, setShowStatistical }) => {
       }));
       setTasks(data);
 
-      const notArchiveTasks = data.filter((task) => task.archived === false).slice(0,10).sort((a, b) => moment(b.date, "DD/MM/YYYY") - moment(a.date, "DD/MM/YYYY"));
+      const notArchiveTasks = data
+        .filter((task) => task.archived === false)
+        .sort(
+          (a, b) => moment(a.date, "DD/MM/YYYY") - moment(b.date, "DD/MM/YYYY")
+        );
       setNotArchiveTasks(notArchiveTasks);
 
       const archiveTasks = data.filter(
         (task) =>
-          task.archived === false && task.date === moment().format("DD/MM/YYYY").slice(0,10)
+          task.archived === false &&
+          task.date === moment().format("DD/MM/YYYY")
       );
       setArchiveTasks(archiveTasks);
 
-      const archivedTasks = data.filter((task) => task.archived === true).slice(0,10);
+      const archivedTasks = data
+        .filter((task) => task.archived === true);
       setArchivedTasks(archivedTasks);
     });
 
@@ -87,7 +92,7 @@ export const Statistical = ({ showStatistical, setShowStatistical }) => {
                           tabIndex="-1"
                           onClick={() => setActiveTab("archive")}
                         >
-                          Phải hoàn thành
+                          Cần hoàn thành
                         </button>
 
                         <button
@@ -134,8 +139,9 @@ export const Statistical = ({ showStatistical, setShowStatistical }) => {
                       <ul>
                         {notArchiveTasks.map((task, index) => (
                           <li key={task.id}>
-                            <span className="short_date">{index + 1}</span>
+                            <span className="task_index">{index + 1}</span>
                             <b>{task.task}</b>
+                            <span className="short_date">{task.date}</span>
                           </li>
                         ))}
                       </ul>
@@ -169,8 +175,9 @@ export const Statistical = ({ showStatistical, setShowStatistical }) => {
                       <ul>
                         {archiveTasks.map((task, index) => (
                           <li key={task.id}>
-                            <span className="short_date">{index + 1}</span>
+                            <span className="task_index">{index + 1}</span>
                             <b>{task.task}</b>
+                            <span className="short_date">{task.date}</span>
                           </li>
                         ))}
                       </ul>
@@ -212,8 +219,9 @@ export const Statistical = ({ showStatistical, setShowStatistical }) => {
                       <ul>
                         {archivedTasks.map((task, index) => (
                           <li key={task.id}>
-                            <span className="short_date">{index + 1}</span>
+                            <span className="task_index">{index + 1}</span>
                             <b>{task.task}</b>
+                            <span className="short_date">{task.date}</span>
                           </li>
                         ))}
                       </ul>

@@ -8,8 +8,9 @@ import { useSelectedProjectValue, useProjectsValue } from "../context";
 import { FaPen } from "react-icons/fa";
 
 import { EditTask } from "./EditTask";
+import moment from "moment";
 
-export const Tasks = ({showSidebar, setShowSidebar}) => {
+export const Tasks = ({ showSidebar }) => {
   //lua chon project hien tai voi gia tri la (inbox,today,next_7)
   const { selectedProject } = useSelectedProjectValue();
 
@@ -19,6 +20,16 @@ export const Tasks = ({showSidebar, setShowSidebar}) => {
   //lay task nam trong project nao
   const { tasks } = useTasks(selectedProject);
 
+  
+  tasks.sort((a, b) => {
+    // Đưa các tasks có date rỗng xuống cuối danh sách
+    if (!a.date && !b.date) return 0;
+    if (!a.date) return -1;
+    if (!b.date) return 1;
+
+    // Sắp xếp các tasks theo thứ tự tăng dần theo ngày
+    return moment(a.date, "DD/MM/YYYY") - moment(b.date, "DD/MM/YYYY");
+  });
   let projectName = "";
 
   const [showEditTask, setShowEditTask] = useState(false);
@@ -26,7 +37,8 @@ export const Tasks = ({showSidebar, setShowSidebar}) => {
 
   //neu co project duoc chon  nam trong cac muc (inbox,today,next 7) thi gan tieu de cua project
   if (collatedTasksExist(selectedProject) && selectedProject) {
-    projectName = getCollatedTitle(collatedTasks, selectedProject).name;
+    projectName = getCollatedTitle(collatedTasks, selectedProject)?.name || "";
+
   }
 
   //neu khong nam trong cac muc mac dinh (inbox,today,next 7) duoc chon thi gan ten cua project
@@ -36,7 +48,8 @@ export const Tasks = ({showSidebar, setShowSidebar}) => {
     selectedProject &&
     !collatedTasksExist(selectedProject)
   ) {
-    projectName = getTitle(projects, selectedProject).name;
+    projectName = getTitle(projects, selectedProject)?.name || "";
+
   }
 
   useEffect(() => {
@@ -44,7 +57,10 @@ export const Tasks = ({showSidebar, setShowSidebar}) => {
   });
 
   return (
-    <div className={showSidebar?"tasks":"tasks__display"} data-testid="tasks">
+    <div
+      className={showSidebar ? "tasks" : "tasks__display"}
+      data-testid="tasks"
+    >
       <h2 data-testid="project-name">{projectName}</h2>
 
       <ul className="tasks__list">
@@ -74,7 +90,11 @@ export const Tasks = ({showSidebar, setShowSidebar}) => {
             </div>
 
             {showEditTask && editTaskId === task.id && (
-              <EditTask showEditTask={showEditTask} taskPram={task} />
+              <EditTask
+                showEditTask={showEditTask}
+                setShowEditTask={setShowEditTask}
+                taskPram={task}
+              />
             )}
           </li>
         ))}
