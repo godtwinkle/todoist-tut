@@ -18,7 +18,7 @@
     "react-scripts": "5.0.1",
     "resolve-url-loader": "^5.0.0",
     "sass-loader": "^13.2.1",
-    "twilio": "^4.11.2",
+    "twilio": "^3.84.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
