@@ -58,12 +58,12 @@ export const AlertContainer = () => {
   }, [tasks]);
 
   return (
-    <div className="custom-toast-container">
+   
       <ToastContainer
         toastClassName="custom-toast-container"
         position="bottom-right"
         autoClose={5000}
-        hideProgressBar
+        hideProgressBar={false}
         newestOnTop
         closeOnClick
         rtl={false}
@@ -71,6 +71,6 @@ export const AlertContainer = () => {
         draggable
         pauseOnHover
       />
-    </div>
+   
   );
 };

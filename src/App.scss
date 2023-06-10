@@ -342,7 +342,10 @@ $generic-bg: #db4c3f;
     /* Thay đổi màu nền */
     background-color: #444545;
     /* Thay đổi màu chữ */
-    color: white;
+  }
+
+  .custom-toast-container .Toastify__progress-bar {
+    background-color: black;  
   }
 
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
@@ -1423,6 +1426,10 @@ header {
   color: white;
 }
 
+.custom-toast-container .Toastify__progress-bar {
+  background-color: white;
+
+}
 
 
 
