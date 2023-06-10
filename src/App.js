@@ -17,7 +17,6 @@ export const App = ({ darkModeDefault = false }) => {
         >
           <Header darkMode={darkMode} setDarkMode={setDarkMode} showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
           <Content showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-        <AlertContainer />
         </main>
       </ProjectsProvider>
     </SelectedProjectProvider>

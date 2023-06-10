@@ -28,16 +28,16 @@ export const Statistical = ({ showStatistical }) => {
         .filter((task) => task.archived === false)
         .sort(
           (a, b) => moment(a.date, "DD/MM/YYYY") - moment(b.date, "DD/MM/YYYY")
-        );
+        ).slice(0,10);
       setNotArchiveTasks(notArchiveTasks);
 
       const archiveTasks = data.filter(
         (task) =>
           task.archived === false && task.date === moment().format("DD/MM/YYYY")
-      );
+      ).slice(0,10);
       setArchiveTasks(archiveTasks);
 
-      const archivedTasks = data.filter((task) => task.archived === true);
+      const archivedTasks = data.filter((task) => task.archived === true).slice(0,10);
       setArchivedTasks(archivedTasks);
     });
 
