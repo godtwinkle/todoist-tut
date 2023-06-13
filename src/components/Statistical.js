@@ -140,8 +140,11 @@ export const Statistical = ({ showStatistical }) => {
                         {notArchiveTasks.map((task, index) => (
                           <li key={task.id}>
                             <span className="task_index">{index + 1}</span>
+
+
                             <b>{task.task}</b>
-                            <span className="short_date">{task.date}</span>
+ <span className="short_date">{task.date}</span>
+                           
                           </li>
                         ))}
                       </ul>

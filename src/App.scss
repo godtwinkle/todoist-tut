@@ -1399,6 +1399,7 @@ header {
         }
 
         li {
+
           padding: 2px;
           margin: 3px;
           white-space: nowrap;
@@ -1414,13 +1415,19 @@ header {
           b,
           strong {
             font-weight: 700;
-            padding: 20px;
+display: inline-block;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  position: fixed;
           }
           .short_date {
             display: inline-block;
             position: absolute;
             right: 0;
             text-transform: capitalize;
+
           }
         }
       }
