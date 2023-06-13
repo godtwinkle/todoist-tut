@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Header } from "./components/layout/Header";
 import { Content } from "./components/layout/Content";
 import { ProjectsProvider, SelectedProjectProvider } from "./context";
-import {AlertContainer} from './components/AlertContainer';
 export const App = ({ darkModeDefault = false }) => {
   const [darkMode, setDarkMode] = useState(darkModeDefault);
   const [showSidebar, setShowSidebar] = useState(true);

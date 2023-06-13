@@ -62,7 +62,8 @@ export const ProjectOverlay = ({
                 tabIndex={0}
                 aria-label="Select the task project"
               >
-                <div className="project-overlay__name">{project.name}</div>
+                <span className="project-overlay__dot">•</span>
+                <span className="project-overlay__name">{project.name}</span>
               </div>
             </li>
           ))}

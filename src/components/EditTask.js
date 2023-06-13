@@ -7,7 +7,7 @@ import { useSelectedProjectValue } from "../context";
 import { ProjectOverlay } from "./ProjectOverlay";
 import { TaskDate } from "./TaskDate";
 
-export const EditTask = ({ showEditTask,setShowEditTask, taskPram }) => {
+export const EditTask = ({ showEditTask, setShowEditTask, taskPram }) => {
   //xu ly ten task
   const [task, setTask] = useState(taskPram.task);
   // xu ly ngay tao task
@@ -26,7 +26,6 @@ export const EditTask = ({ showEditTask,setShowEditTask, taskPram }) => {
 
   //lua chon project hien tai voi gia tri la (inbox,today,next_7)
   const { selectedProject } = useSelectedProjectValue();
-
 
   const editTask = () => {
     //lay project id cua project hien tai
@@ -61,13 +60,9 @@ export const EditTask = ({ showEditTask,setShowEditTask, taskPram }) => {
         })
     );
   };
-
-
-
   return (
     <div className="add-task" data-testid="add-task-comp">
       {showEditTask && (
-
         <div className="add-task__main" data-testid="add-task-main">
           <ProjectOverlay
             setProject={setProject}
@@ -143,10 +138,12 @@ export const EditTask = ({ showEditTask,setShowEditTask, taskPram }) => {
             <FaRegCalendarAlt />
           </span>
         </div>
-      )}     
+      )}
     </div>
   );
 };
+
+
 
 EditTask.propTypes = {
   showEditTaskMain: PropTypes.bool,

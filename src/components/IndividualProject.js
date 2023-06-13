@@ -14,21 +14,16 @@ export const IndividualProject = ({ project }) => {
 
   //lay du lieu cua 1 project
   const { setSelectedProject } = useSelectedProjectValue();
-  
+
   const { tasks } = useTasks(project.projectId);
 
   const deleteProject = (deleteProject) => {
     tasks.forEach((task) => {
       if (task.projectId === deleteProject.projectId) {
-        firebase
-          .firestore()
-          .collection("tasks")
-          .doc(task.id)
-          .update({          
-            projectId: "INBOX",
-          });
+        firebase.firestore().collection("tasks").doc(task.id).update({
+          projectId: "INBOX",
+        });
       }
-      console.log(task.projectId);
     });
 
     firebase
@@ -77,13 +72,8 @@ export const IndividualProject = ({ project }) => {
           <div className="project-delete-modal">
             <div className="project-delete-modal__inner">
               <p>Bạn có muốn xoá dự án này không?</p>
-              <button
-                type="button"
-                onClick={() => deleteProject(project)}
-              >
-          
+              <button type="button" onClick={() => deleteProject(project)}>
                 Xoá
-                
               </button>
 
               <span
@@ -112,7 +102,7 @@ export const IndividualProject = ({ project }) => {
         aria-label="Edit of project"
       >
         <FaPen />
-     
+
         <div className="add-project__input" data-testid="add-project-inner">
           <input
             value={projectName}
@@ -128,7 +118,6 @@ export const IndividualProject = ({ project }) => {
             onClick={() => editProject()}
             data-testid="add-project-submit"
           >
-            
             Sửa dự án
           </button>
         </div>

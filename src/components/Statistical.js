@@ -28,7 +28,7 @@ export const Statistical = ({ showStatistical }) => {
         .filter((task) => task.archived === false)
         .sort(
           (a, b) => moment(a.date, "DD/MM/YYYY") - moment(b.date, "DD/MM/YYYY")
-        ).slice(0,10);
+        );
       setNotArchiveTasks(notArchiveTasks);
 
       const archiveTasks = data.filter(

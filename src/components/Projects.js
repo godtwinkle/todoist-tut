@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useSelectedProjectValue, useProjectsValue } from '../context';
-import { IndividualProject } from './IndividualProject';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { useSelectedProjectValue, useProjectsValue } from "../context";
+import { IndividualProject } from "./IndividualProject";
 
 export const Projects = ({ activeValue = null }) => {
   // xem la loai project nao dang duoc chon (inbox,today,next_7)
@@ -23,11 +23,11 @@ export const Projects = ({ activeValue = null }) => {
         className={
           //khi nhan vao project nao thi se hien thi project do
           active === project.projectId
-          ? 'active sidebar__project'
-          : 'sidebar__project'
-      }
+            ? "active sidebar__project"
+            : "sidebar__project"
+        }
       >
-          <div
+        <div
           role="button"
           data-testid="project-action"
           tabIndex={0}
@@ -38,7 +38,7 @@ export const Projects = ({ activeValue = null }) => {
             setSelectedProject(project.projectId);
           }}
           onKeyDown={(e) => {
-            if (e.key === 'Enter') {
+            if (e.key === "Enter") {
               setActive(project.projectId);
               setSelectedProject(project.projectId);
             }
@@ -52,5 +52,5 @@ export const Projects = ({ activeValue = null }) => {
 };
 
 Projects.propTypes = {
-    activeValue: PropTypes.bool,
+  activeValue: PropTypes.bool,
 };

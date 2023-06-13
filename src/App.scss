@@ -1145,6 +1145,17 @@ header {
     div:nth-child(1) {
       width: 100%;
       padding: 10px;
+      .project-overlay__dot {
+        color: $generic-bg;
+      }
+    }
+
+
+    
+    
+    .project-overlay__dot {
+      margin-right: 10px;
+      font-size: 30px;
     }
 
     &.active,
@@ -1425,11 +1436,20 @@ header {
   background-color: $generic-bg;
   /* Thay đổi màu chữ */
   color: white;
+  width: 100%;
+
+
+}
+
+.custom-toast-content {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .custom-toast-container .Toastify__progress-bar {
   background-color: white;
-
 }
 
 
